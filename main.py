@@ -131,7 +131,7 @@ def executar_baixa():
     # --- Leitura da planilha Google ---
     # Configuração do acesso à planilha (você precisa do arquivo de credenciais JSON do Google)
     SCOPE = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    CREDS_FILE = 'credenciais.json'  # Corrigido conforme o nome do arquivo
+    CREDS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'credenciais.json')
     SPREADSHEET_KEY = '1-1S13HAvTMQkY7aVfsslinV7X5w_Awdp0a2UvepjT1g'
     aba = 'PAINEL'  # Ajustado conforme o nome da aba
 
@@ -157,7 +157,7 @@ def executar_baixa():
             continue
         if (inicio_periodo <= data_linha <= fim_periodo and
             insumos[i].strip() and quantidades[i].strip() and
-            sinais_baixa[i].strip().upper() == 'SIM'):
+            sinais_baixa[i].strip().upper() == 'NÃO'):
             registros_para_baixa.append({
                 'insumo': insumos[i].strip(),
                 'quantidade': quantidades[i],
